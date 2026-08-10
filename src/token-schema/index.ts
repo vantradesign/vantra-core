@@ -70,7 +70,7 @@ const BASE_SCOPES = new Set([':root', 'html', ':host', ':where(:root)'])
  *
  * @example
  * ```ts
- * import { parseTokenSchema } from '@vantradesign/core'
+ * import { parseTokenSchema } from '@vantra-design/core'
  *
  * const schema = parseTokenSchema('./packages/tokens', {
  *   cssVariablePrefix: 'vt',

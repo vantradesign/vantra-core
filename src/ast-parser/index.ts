@@ -116,7 +116,7 @@ interface ComponentCandidate {
  *
  * @example
  * ```ts
- * import { parseComponents } from '@vantradesign/core'
+ * import { parseComponents } from '@vantra-design/core'
  *
  * const components = parseComponents('./packages/ui', {
  *   include: ['src/**\/*.vue'],

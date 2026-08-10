@@ -1,5 +1,5 @@
 /**
- * `@vantradesign/core` — shared primitives for the Vantra design-system
+ * `@vantra-design/core` — shared primitives for the Vantra design-system
  * governance suite.
  *
  * Three capabilities, one dependency-free-at-runtime contract:

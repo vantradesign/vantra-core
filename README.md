@@ -1,4 +1,4 @@
-# @vantradesign/core
+# @vantra-design/core
 
 Shared AST-parsing, component-graph and design-token primitives for the **Vantra** design-system governance suite.
 
@@ -17,7 +17,7 @@ It deliberately contains **no governance rules, no scoring, no reporting and no 
 ## Installation
 
 ```bash
-pnpm add @vantradesign/core
+pnpm add @vantra-design/core
 ```
 
 Requires **Node.js >= 18.18**. Ships ESM and CJS builds with bundled type declarations.
@@ -27,7 +27,7 @@ Requires **Node.js >= 18.18**. Ships ESM and CJS builds with bundled type declar
 ## Quick start
 
 ```ts
-import { parseComponents, buildComponentGraph, parseTokenSchema } from '@vantradesign/core'
+import { parseComponents, buildComponentGraph, parseTokenSchema } from '@vantra-design/core'
 
 const components = parseComponents('./packages/ui')
 const graph = buildComponentGraph(components)

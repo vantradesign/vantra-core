@@ -1,5 +1,5 @@
 /**
- * Central, stable type contract for `@vantradesign/core`.
+ * Central, stable type contract for `@vantra-design/core`.
  *
  * Every type in this file is part of the package's public API and is therefore
  * covered by the SemVer guarantees documented in the README. Downstream tools in

@@ -43,7 +43,7 @@ const ALL_EDGE_KINDS: readonly GraphEdgeKind[] = [
  *
  * @example Build, persist, rehydrate
  * ```ts
- * import { parseComponents, buildComponentGraph } from '@vantradesign/core'
+ * import { parseComponents, buildComponentGraph } from '@vantra-design/core'
  *
  * const graph = buildComponentGraph(parseComponents('./packages/ui'))
  *

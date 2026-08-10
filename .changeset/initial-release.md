@@ -1,5 +1,5 @@
 ---
-'@vantradesign/core': minor
+'@vantra-design/core': minor
 ---
 
 Initial release of the shared primitives for the Vantra governance suite.
