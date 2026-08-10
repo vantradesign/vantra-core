@@ -41,21 +41,42 @@ jobs:
       - name: Verify before releasing
         run: pnpm run verify
 
-      # Opens (or updates) a "Version Packages" PR when changesets are pending.
-      # When that PR is merged, this same step publishes instead.
-      - name: Create version PR or publish
+      # Opens (or updates) a "Version Packages" PR while changesets are pending.
+      # Publishing is handled separately below so that the tarball can carry a
+      # provenance attestation, which `changeset publish` cannot produce here.
+      - name: Create or update the version PR
+        id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm run version-packages
-          publish: pnpm run release
           commit: 'chore: version packages'
           title: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Reached once the version PR has been merged and no changesets remain.
+      # The script is a no-op when the current version is already on npm.
+      - name: Publish to npm with provenance
+        id: publish
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: pnpm run release
+        env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          # Attaches a signed provenance attestation to the published tarball,
-          # letting consumers verify it was built from this commit in this repo.
-          # Set as an env var rather than relying on publishConfig alone, since
-          # changesets delegates publishing to the package manager.
-          NPM_CONFIG_PROVENANCE: true
+
+      - name: Tag the release
+        if: steps.publish.outputs.published == 'true'
+        env:
+          VERSION: ${{ steps.publish.outputs.version }}
+        run: |
+          git tag "v${VERSION}"
+          git push origin "v${VERSION}"
+
+      - name: Create the GitHub release
+        if: steps.publish.outputs.published == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.publish.outputs.version }}
+        run: |
+          gh release create "v${VERSION}" \
+            --title "v${VERSION}" \
+            --notes "See [CHANGELOG.md](https://github.com/${GITHUB_REPOSITORY}/blob/main/CHANGELOG.md) for details."
