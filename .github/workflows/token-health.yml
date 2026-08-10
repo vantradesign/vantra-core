@@ -1,0 +1,49 @@
+name: Token health
+
+# The npm token is a granular access token, so it expires. Without this check
+# the first symptom would be a confusing auth error deep in a publish log,
+# months from now, on an unrelated commit. A failing scheduled run notifies the
+# repository admins instead, well before someone wants to ship.
+#
+# This detects an already-expired or revoked token rather than predicting
+# expiry: npm exposes no expiry date via its API. Keep the renewal date in a
+# calendar too — this is a safety net, not a substitute.
+
+on:
+  schedule:
+    # Mondays, 06:00 UTC.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  npm-token:
+    name: npm token still authenticates
+    # Stops the schedule from running in forks, where NPM_TOKEN is absent and
+    # the job would fail for reasons that tell nobody anything useful.
+    if: github.repository == 'vantradesign/vantra-core'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          registry-url: https://registry.npmjs.org
+
+      - name: Check that the token authenticates
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm whoami
+
+      - name: Check that the token still grants write access
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # `whoami` only proves the token is valid; it says nothing about
+          # whether the token still grants write access to this package, which
+          # is what a release actually needs. Expected output is
+          # "@vantra-design/core: read-write".
+          npm access list packages @vantra-design
