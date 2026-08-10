@@ -1,5 +1,13 @@
 # @vantra-design/core
 
+## 0.1.2
+
+### Patch Changes
+
+- 21135cf: Actually attach provenance attestations to published tarballs.
+
+  The previous release enabled provenance in configuration only. Changesets delegates publishing to the detected package manager, and `pnpm publish` neither supports `--provenance` nor reads `NPM_CONFIG_PROVENANCE`, so the setting was silently ignored. Publishing now runs through `npm publish --provenance`, and releases can be verified with `npm audit signatures`.
+
 ## 0.1.1
 
 ### Patch Changes
