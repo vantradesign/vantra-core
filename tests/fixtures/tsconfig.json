@@ -1,0 +1,19 @@
+{
+  "//": "Fixtures are PARSED AS DATA by the test-suite, never compiled or executed. They deliberately import 'react' and 'vue', which are not dependencies of this package — that is the point: the resolver must classify them as external. This config exists only to stop editors from reporting those intentional errors. The root tsconfig.json excludes this directory.",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": []
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue"]
+}

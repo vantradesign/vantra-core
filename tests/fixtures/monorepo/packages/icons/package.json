@@ -1,0 +1,8 @@
+{
+  "name": "@fixture/icons",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "//": "Entry lives at a non-standard path, so it can only be found via this manifest.",
+  "main": "lib/entry.ts"
+}

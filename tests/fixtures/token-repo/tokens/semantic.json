@@ -1,0 +1,25 @@
+{
+  "text": {
+    "heading": {
+      "value": "{color.base.neutral.900}",
+      "type": "color",
+      "comment": "Default heading colour."
+    },
+    "muted": {
+      "value": "{color.base.neutral.900}",
+      "type": "color"
+    }
+  },
+  "zIndex": {
+    "modal": { "value": 1000, "type": "number" }
+  },
+  "opacity": {
+    "disabled": { "value": 0.4 }
+  },
+  "motion": {
+    "fast": { "value": "150ms", "type": "duration" }
+  },
+  "brokenToken": {
+    "noValueHere": { "type": "color", "comment": "Deliberately missing a value." }
+  }
+}

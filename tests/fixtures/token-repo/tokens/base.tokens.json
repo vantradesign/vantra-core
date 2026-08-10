@@ -1,0 +1,34 @@
+{
+  "color": {
+    "$type": "color",
+    "base": {
+      "blue": {
+        "500": { "$value": "#2563eb", "$description": "Primary blue ramp, step 500." },
+        "900": { "$value": "#1e3a8a" }
+      },
+      "neutral": {
+        "0": { "$value": "#ffffff" },
+        "900": { "$value": "#111827" }
+      }
+    },
+    "brand": {
+      "primary": { "$value": "{color.base.blue.500}", "$description": "Brand accent." },
+      "onPrimary": { "$value": "{color.base.neutral.0}" }
+    }
+  },
+  "spacing": {
+    "$type": "dimension",
+    "sm": { "$value": "0.5rem" },
+    "md": { "$value": "1rem" },
+    "lg": { "$value": "{spacing.md}" }
+  },
+  "borderRadius": {
+    "md": { "$value": "6px", "$type": "borderRadius" }
+  },
+  "shadow": {
+    "raised": {
+      "$type": "shadow",
+      "$value": { "offsetX": "0", "offsetY": "1px", "blur": "2px", "color": "#0000001a" }
+    }
+  }
+}

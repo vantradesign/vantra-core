@@ -1,0 +1,10 @@
+# Single-package repository.
+#
+# This file exists only to hold pnpm settings (pnpm >= 11 no longer reads the
+# "pnpm" field from package.json). `packages` is intentionally omitted so that
+# the synthetic package.json files under tests/fixtures/** are never picked up
+# as workspace members.
+
+allowBuilds:
+  # esbuild is a transitive build dependency of tsup and vitest.
+  esbuild: true

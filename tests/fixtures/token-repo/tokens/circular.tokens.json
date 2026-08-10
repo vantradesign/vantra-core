@@ -1,0 +1,9 @@
+{
+  "loop": {
+    "a": { "$value": "{loop.b}" },
+    "b": { "$value": "{loop.a}" }
+  },
+  "dangling": {
+    "ref": { "$value": "{does.not.exist}" }
+  }
+}
