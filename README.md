@@ -1,5 +1,9 @@
 # @vantra-design/core
 
+[![npm](https://img.shields.io/npm/v/@vantra-design/core)](https://www.npmjs.com/package/@vantra-design/core)
+[![CI](https://github.com/vantradesign/vantra-core/actions/workflows/ci.yml/badge.svg)](https://github.com/vantradesign/vantra-core/actions/workflows/ci.yml)
+[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-blue)](./LICENSE)
+
 Shared AST-parsing, component-graph and design-token primitives for the **Vantra** design-system governance suite.
 
 This package answers three questions about a front-end repository, and nothing more:
@@ -21,6 +25,12 @@ pnpm add @vantra-design/core
 ```
 
 Requires **Node.js >= 18.18**. Ships ESM and CJS builds with bundled type declarations.
+
+Releases are published from CI with [npm provenance](https://docs.npmjs.com/generating-provenance-statements), so you can verify a tarball was built from this repository:
+
+```bash
+npm audit signatures
+```
 
 ---
 
