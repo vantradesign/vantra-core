@@ -1,6 +1,6 @@
 {
   "name": "@vantra-design/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared AST parsing, component-graph and design-token primitives for the Vantra design-system governance suite.",
   "keywords": [
     "design-system",
