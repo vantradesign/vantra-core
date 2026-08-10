@@ -22,9 +22,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # The package claims support for Node >= 18.18, so both the oldest
-        # supported release and current LTS are exercised.
-        node-version: ['18.18.0', '22.x']
+        # Toolchain versions only. pnpm 11 itself requires Node >= 22.13, so the
+        # package's minimum *runtime* version is verified separately, in the
+        # `runtime-compat` job below, against the built bundle.
+        node-version: ['22.x', '24.x']
 
     steps:
       - name: Check out the repository
@@ -61,3 +62,37 @@ jobs:
           name: coverage
           path: coverage/
           retention-days: 7
+
+  runtime-compat:
+    name: Smoke test on minimum supported Node
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      # The bundle is built with a Node new enough to run the toolchain …
+      - name: Set up Node.js for the build
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm run build
+
+      # … then executed on the oldest Node the package claims to support, which
+      # is what `engines.node` promises consumers.
+      - name: Switch to the minimum supported Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.18.0
+
+      - name: Smoke test the built bundle
+        run: node scripts/smoke.mjs
