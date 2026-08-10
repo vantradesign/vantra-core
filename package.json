@@ -63,7 +63,7 @@
     "smoke": "node scripts/smoke.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm run build && changeset publish",
+    "release": "pnpm run build && node scripts/publish.mjs",
     "verify": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build"
   },
   "dependencies": {
