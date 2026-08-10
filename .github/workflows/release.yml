@@ -54,3 +54,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Attaches a signed provenance attestation to the published tarball,
+          # letting consumers verify it was built from this commit in this repo.
+          # Set as an env var rather than relying on publishConfig alone, since
+          # changesets delegates publishing to the package manager.
+          NPM_CONFIG_PROVENANCE: true
