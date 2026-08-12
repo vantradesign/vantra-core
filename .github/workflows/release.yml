@@ -46,19 +46,20 @@ jobs:
       # provenance attestation, which `changeset publish` cannot produce here.
       - name: Create or update the version PR
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
-          version: pnpm run version-packages
-          commit: 'chore: version packages'
-          title: 'chore: version packages'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version-script: pnpm run version-packages
+          commit-message: 'chore: version packages'
+          pr-title: 'chore: version packages'
+          # v2 no longer reads the token from the environment, and the version
+          # commit is pushed through the GitHub API rather than the Git CLI.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # Reached once the version PR has been merged and no changesets remain.
       # The script is a no-op when the current version is already on npm.
       - name: Publish to npm with provenance
         id: publish
-        if: steps.changesets.outputs.hasChangesets == 'false'
+        if: steps.changesets.outputs.has-changesets == 'false'
         run: pnpm run release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
