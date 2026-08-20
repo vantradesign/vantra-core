@@ -1,0 +1,33 @@
+name: Question
+description: Ask a question about usage, behavior, or best practices
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We're happy to help — please share as much context as you can.
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to do?
+      description: Describe your goal or use case.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you already tried or checked?
+      description: Mention any docs, existing issues, or experiments you've looked at.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else that might help us answer.
+    validations:
+      required: false

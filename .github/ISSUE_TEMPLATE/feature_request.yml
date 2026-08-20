@@ -1,0 +1,50 @@
+name: Feature request
+description: Suggest an idea or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest an improvement!
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Problem / motivation
+      description: What's missing or painful today?
+      placeholder: I often run into …
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you like this to work?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you've thought about?
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, links, or anything else that helps.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: duplicate
+    attributes:
+      label: Duplicate check
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
